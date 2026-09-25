@@ -1,4 +1,4 @@
-function centerCoordinates(windowlength, rectLength) {
+function callOffSet(windowlength, rectLength) {
     return (windowlength - rectLength) / 2;
 }
 
@@ -7,6 +7,6 @@ function distance(x1, y1, x2, y2) {
 }
 
 module.exports = {
-    centerCoordinates,
+    callOffSet,
     distance,
 }
