@@ -14,9 +14,14 @@ function determineDirection(rangeX, screenWidth, rangeWidth, status) {
 
 }
 
+function isOverlapping(detectorX, detectorWidth, particleX, particleWidth) {
+    return (detectorX + detectorWidth > particleX) && (detectorX < particleX + particleWidth)
+}
+
 
 module.exports = {
     callOffSet,
     distance,
     determineDirection,
+    isOverlapping,
 }
