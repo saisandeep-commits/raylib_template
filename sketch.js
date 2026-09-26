@@ -4,11 +4,11 @@ const geomentry = require("./geomentry");
 const screenWidth = 800;
 const screenHeight = 500;
 
-const rangeHeight = screenHeight;
-const rangeWidth = screenWidth / 16;
-const rangeY = 0;
+const detectorHeight = screenHeight;
+const detectorWidth = screenWidth / 16;
+const detectorY = 0;
 
-let rangeX = 0;
+let detectorX = 0;
 
 let status = 1;
 
@@ -23,21 +23,34 @@ function setup() {
 }
 
 function update() {
-    status = geomentry.determineDirection(rangeX, screenWidth, rangeWidth, status)
-    rangeX = rangeX + status;
+    status = geomentry.determineDirection(detectorX, screenWidth, detectorWidth, status)
+    detectorX = detectorX + status;
 }
 
 function draw() {
-    r.BeginDrawing();
-    r.ClearBackground(r.BLACK)
 
-    r.DrawRectangle(rangeX, rangeY, rangeWidth, rangeHeight, r.WHITE)
+    const particleRange1_X = 100;
+    const particleRange1_width = 100;
+
+    r.BeginDrawing();
+    r.ClearBackground(r.BLACK);
+
+    drawParticleRange(particleRange1_X, particleRange1_width);
+
+    r.DrawRectangle(detectorX, detectorY, detectorWidth, detectorHeight, r.WHITE)
 
     r.EndDrawing();
 }
 
 function teardown() {
     r.CloseWindow();
+}
+
+function drawParticleRange(particleRangeX, particleRangeWidth) {
+    const particleRangeHeight = screenHeight;
+    const particleRangeY = 0;
+
+    r.DrawRectangle(particleRangeX, particleRangeY, particleRangeWidth, particleRangeHeight, r.BLUE);
 }
 
 module.exports = {
