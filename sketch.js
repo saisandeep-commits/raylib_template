@@ -10,8 +10,6 @@ const detectorY = 0;
 
 let detectorX = 0;
 
-let color;
-
 let status = 1;
 
 function running() {
@@ -31,15 +29,20 @@ function update() {
 
 function draw() {
 
-    const particleRange1_X = 100;
-    const particleRange1_width = 100;
+    const particleRange1_X = 200;
+    const particleRange1_width = 80;
 
-    const color = geomentry.isOverlapping(detectorX, detectorWidth, particleRange1_X, particleRange1_width) ? r.RED : r.WHITE;
+    const particleRange2_X = 700;
+    const particleRange2_width = 25
+
+    const color = (geomentry.isOverlapping(detectorX, detectorWidth, particleRange1_X, particleRange1_width) ||
+        (geomentry.isOverlapping(detectorX, detectorWidth, particleRange2_X, particleRange2_width))) ? r.RED : r.WHITE;
 
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
     drawParticleRange(particleRange1_X, particleRange1_width);
+    drawParticleRange(particleRange2_X, particleRange2_width);
 
     r.DrawRectangle(detectorX, detectorY, detectorWidth, detectorHeight, color)
 
