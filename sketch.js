@@ -1,19 +1,39 @@
 const r = require("raylib");
+const geomentry = require("./geomentry");
+
+const screenWidth = 800;
+const screenHeight = 500;
+
+const rangeHeight = screenHeight;
+const rangeWidth = screenWidth / 16;
+const rangeY = 0;
+
+let rangeX = 0;
+
+let status = 1;
 
 function running() {
     return !r.WindowShouldClose();
 }
 
 function setup() {
-    // prepare the sketch
+    const FPS = 80;
+    r.InitWindow(screenWidth, screenHeight, "particle detector");
+    r.SetTargetFPS(FPS);
 }
 
 function update() {
-    // change the state
+    status = geomentry.determineDirection(rangeX, screenWidth, rangeWidth, status)
+    rangeX = rangeX + status;
 }
 
 function draw() {
-    // draw the current state
+    r.BeginDrawing();
+    r.ClearBackground(r.BLACK)
+
+    r.DrawRectangle(rangeX, rangeY, rangeWidth, rangeHeight, r.WHITE)
+
+    r.EndDrawing();
 }
 
 function teardown() {
